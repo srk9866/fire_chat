@@ -12,13 +12,13 @@ class AuthService{
 
   Future<void> signup(String name, String email, String password) async{
     try{
-      AuthResult authResult= await _auth.signInWithEmailAndPassword(
+      AuthResult authResult= await _auth.createUserWithEmailAndPassword(
       email: email, 
       password: password
     );
     if(authResult.user!=null){
       String token= await _messaging.getToken();
-      userRef.document(authResult.user.uid).setData({
+      usersRef.document(authResult.user.uid).setData({
         'name':name,
         'email':email,
         'token':token,
@@ -29,7 +29,7 @@ class AuthService{
     }
   }
 
-  Future<void> loginUser(String email, String password) async{
+  Future<void> login(String email, String password) async{
    try{
      await _auth.signInWithEmailAndPassword(email: email, password: password);
    } on PlatformException catch(err){
@@ -37,7 +37,7 @@ class AuthService{
    }
   }
 
-  Future<void> logout(){
+  Future<void> logout() async{
     Future.wait([
       _auth.signOut(),
     ]);

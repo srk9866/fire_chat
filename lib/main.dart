@@ -1,5 +1,6 @@
 import 'package:fire_chat/models/user.dart';
 import 'package:fire_chat/services/auth_service.dart';
+import 'package:fire_chat/services/database_service.dart';
 import 'package:fire_chat/src/home_screen.dart';
 import 'package:fire_chat/src/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,6 +14,9 @@ void main() => runApp(MultiProvider(
         ),
         Provider<AuthService>(
           create: (_) => AuthService(),
+        ),
+        Provider<DatabaseService>(
+          create: (_) => DatabaseService(),
         )
       ],
       child: FireApp(),
