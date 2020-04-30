@@ -26,16 +26,19 @@ dependencies:
 
   cloud_firestore: ^0.13.1
   firebase_auth: ^0.15.4
-  firebase_core: ^0.4.4+3
+  firebase_core: ^0.4.3+3
   firebase_messaging: ^6.0.9
   firebase_storage: ^3.1.1
 
-  provider: ^4.0.5
+  provider: ^4.0.3
+
   uuid: ^2.0.4
-  path_provider: ^1.6.5
+  path_provider: ^1.6.0
   flutter_image_compress: ^0.6.5+1
-  image_picker: ^0.6.5
-  cached_network_image: ^2.1.0+1
+  image_picker: ^0.6.3+1
+  cached_network_image: ^2.0.0
+
+  intl: ^0.16.1
 
 dev_dependencies:
   flutter_test:

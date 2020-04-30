@@ -1,6 +1,7 @@
 import 'package:fire_chat/models/user.dart';
 import 'package:fire_chat/services/auth_service.dart';
 import 'package:fire_chat/services/database_service.dart';
+import 'package:fire_chat/services/storage_service.dart';
 import 'package:fire_chat/src/home_screen.dart';
 import 'package:fire_chat/src/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,7 +18,10 @@ void main() => runApp(MultiProvider(
         ),
         Provider<DatabaseService>(
           create: (_) => DatabaseService(),
-        )
+        ),
+        Provider<StorageService>(
+          create: (_) => StorageService(),
+        ),
       ],
       child: FireApp(),
     ));
@@ -35,7 +39,8 @@ class FireApp extends StatelessWidget {
         stream: Provider.of<AuthService>(context, listen: false).user,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
-            Provider.of<UserData>(context, listen: false).currentUserId=snapshot.data.uid;
+            Provider.of<UserData>(context, listen: false).currentUserId =
+                snapshot.data.uid;
             return HomeScreen();
           } else {
             return LoginScreen();
